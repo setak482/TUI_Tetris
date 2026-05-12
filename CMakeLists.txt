@@ -22,10 +22,11 @@ endif()
 FetchContent_MakeAvailable(ftxui)
 
 # add_subdirectory(src/game)
-# add_subdirectory(src/manager)
+# add_subdirectory(src/core)
 # add_subdirectory(src/ui)
 
 add_executable(my_app src/main.cpp)
+target_include_directories(my_app PRIVATE include)
 
 target_link_libraries(my_app PRIVATE
     # ftxui
