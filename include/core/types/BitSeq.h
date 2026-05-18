@@ -12,6 +12,7 @@ public:
 
     // 인덱스 참조
     BitUnit operator[](size_t idx);
+    bool operator[](size_t idx) const;
     BitSlice operator()(size_t offset, size_t size);
 
     // Getter/Setter
