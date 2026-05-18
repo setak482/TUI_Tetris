@@ -1,7 +1,6 @@
 #pragma once
 #include "core/types/BitUnit.h"
 #include "core/types/BitSlice.h"
-#include <cstdint>
 #include <iostream>
 #include <string>
 
@@ -20,8 +19,9 @@ public:
 
     BitSeq& operator=(uint16_t val);
     BitSeq& operator=(int val);
-    BitSeq& operator=(BitUnit &slice);
-    BitSeq& operator=(BitSlice &slice);
+
+    BitSeq& operator+=(const BitUnit unit);
+    BitSeq& operator+=(const BitSlice slice);
 
     // 디버깅용
     std::string to_string() const;
