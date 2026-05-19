@@ -36,7 +36,7 @@ BitSeq& BitSeq::operator+=(const BitUnit unit){
 }
 
 BitSeq& BitSeq::operator+=(const BitSlice slice) {
-    int shift = 15 - slice._offset - slice._size;
+    int shift = 16 - slice._offset - slice._size;
     uint16_t mask = ((1 << slice._size) - 1) << shift;
     _value = (_value & ~mask) | (slice._value << shift);
     
