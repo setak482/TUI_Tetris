@@ -20,8 +20,12 @@ public:
     BitSeq& operator=(uint16_t val);
     BitSeq& operator=(int val);
 
+    // 기초연산
+
     BitSeq& operator+=(const BitUnit unit);
     BitSeq& operator+=(const BitSlice slice);
+
+    BitSeq& operator&(const BitSlice slice);
 
     // 디버깅용
     std::string to_string() const;

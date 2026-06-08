@@ -25,6 +25,11 @@ FetchContent_MakeAvailable(ftxui)
 add_subdirectory(src/core)
 # add_subdirectory(src/ui)
 
+if(MSVC)
+    target_compile_options(exec PRIVATE "/utf-8")
+    target_compile_options(core_lib PRIVATE "/utf-8")
+endif()
+
 add_executable(exec src/main.cpp)
 target_include_directories(exec PRIVATE include)
 

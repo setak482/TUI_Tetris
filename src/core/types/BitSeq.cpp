@@ -3,8 +3,8 @@ using namespace std;
 
 // Getter
 
-BitUnit BitSeq::operator[](size_t idx) { return BitUnit(idx,(_value & (1 << idx))!=0); }
-bool BitSeq::operator[](size_t idx) const{ return (_value & (1 << idx))!=0; }
+BitUnit BitSeq::operator[](size_t idx) { return BitUnit(idx,(_value & (1 << (15 - idx)))!=0); }
+bool BitSeq::operator[](size_t idx) const{ return (_value & (1 << (15 - idx)))!=0; }
 
 BitSlice BitSeq::operator()(size_t offset, size_t size) { 
     uint16_t mask = (1 << size) - 1;
@@ -15,7 +15,7 @@ BitSlice BitSeq::operator()(size_t offset, size_t size) {
 }
 BitSeq::operator uint16_t() const{ return _value; }
 
-// ëŒ€ìž…ì—°ì‚° ì˜¤ë²„ë¡œë”©
+// ´ëÀÔ¿¬»ê ¿À¹ö·Îµù
 
 BitSeq& BitSeq::operator=(uint16_t val){ 
     _value = val; 
@@ -43,15 +43,19 @@ BitSeq& BitSeq::operator+=(const BitSlice slice) {
     return *this;
 }
 
-// ë””ë²„ê¹…ìš©
+// µð¹ö±ë¿ë
 
 string BitSeq::to_string() const{
     string tmp;
-    for(int i = 15; i >= 0; i--) tmp += ((*this)[i] ? "O" : "X");
+    for(int i = 15; i >= 0; i--){
+        tmp += ((*this)[i] ? "1" : "0");
+        if(!((i)%4)) tmp += " ";
+    }
     return tmp;
 }
 
 ostream& operator<<(std::ostream& os, const BitSeq &b){
-    os << b.to_string();
+    for(int i = 15; i >= 0; i--) os << (b[i] ? reinterpret_cast<const char*>(u8"¡á") : reinterpret_cast<const char*>(u8"¡à"));
+    // os << b.to_string();
     return os;
 }
