@@ -2,14 +2,19 @@
 
 class Block{
     Block_Type _type;
-    int8_t _rotate;
-    int8_t _x;
-    int8_t _y;
+    int _rotation;
+    int _x, _y;
+
+    void rotate_by(int delta) { _rotation += (_rotation + delta + 4) % 4; }
 public:
-    Block(Block_Type type, int8_t init_x, int8_t init_y)
-        : _type{type}, _rotate{0}, _x{init_x}, _y{init_y} {}
+    Block(Block_Type type, int x, int y)
+        : _type{type}, _rotation{0}, _x{x}, _y{y} {}
     
-    uint16_t mask() const{
-        return TEROMINO[static_cast<int>(_type)][_rotate];
+    uint16_t shape() const{
+        return TEROMINO[static_cast<int>(_type)][_rotation];
     }
+
+    void move(int dx, int dy);
+    void rotate_cw() { rotate_by(1); }
+    void rotate_ccw() { rotate_by(-1); }
 };

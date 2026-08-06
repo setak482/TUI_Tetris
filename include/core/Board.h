@@ -1,17 +1,22 @@
 #include <vector>
+#include "game/const.h"
 #include "core/types/BitSeq.h"
 
 class Board{
     std::vector<BitSeq> _state;
-    int width;
-    int height;
-    const int __STANDBY__ = 3;
+    int _height;
+    static constexpr int HIDDEN_ROWS = 3;
 public:
-    Board(int h=24) : width{16}, height{h} { _state.resize(h+1); }
+    Board(int visible_height=20) : _height{visible_height + 1 + HIDDEN_ROWS} {
+        _state.resize(_height);
+        init();
+    }
 
-    void init();
+    void init(){
+        for(int y = 0; y < _height - 1; y++)
+            _state[y] = LINE_EMPTY;
+        _state[_height - 1] = LINE_FULL;  // 바닥은 완전히 채워진 줄
+    }
 
     void create_block();
-
-    void console_log();
 };

@@ -1,4 +1,4 @@
-#include "core/const.h"
+#include "../include/game/const.h"
 #include "core/Board.h"
 #include <iostream>
 using namespace std;

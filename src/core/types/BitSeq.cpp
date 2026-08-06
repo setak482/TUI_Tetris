@@ -22,12 +22,7 @@ BitSeq& BitSeq::operator=(uint16_t val){
     return *this;
 }
 
-BitSeq& BitSeq::operator=(const int val){
-    _value = static_cast<uint16_t>(val);
-    return *this;
-}
-
-BitSeq& BitSeq::operator+=(const BitUnit unit){
+BitSeq& BitSeq::operator=(const BitUnit unit){
     int i = 15-unit._idx;
     uint16_t mask = 1 << i;
 
@@ -35,7 +30,7 @@ BitSeq& BitSeq::operator+=(const BitUnit unit){
     return *this;
 }
 
-BitSeq& BitSeq::operator+=(const BitSlice slice) {
+BitSeq& BitSeq::operator=(const BitSlice slice) {
     int shift = 16 - slice._offset - slice._size;
     uint16_t mask = ((1 << slice._size) - 1) << shift;
     _value = (_value & ~mask) | (slice._value << shift);

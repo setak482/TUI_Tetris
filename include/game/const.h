@@ -3,7 +3,7 @@
 constexpr uint16_t LINE_EMPTY = 0xE007;  // 1110 0000 0000 0111
 constexpr uint16_t LINE_FULL = 0xFFFF;   // 1111 1111 1111 1111
 
-inline constexpr uint16_t TEROMINO[7][4] = {
+inline constexpr uint16_t TETROMINO[7][4] = {
     // 0: I (Cyan)
     { 0x0F00, 0x2222, 0x00F0, 0x4444 }, // 0000 1111 0000 0000
     
